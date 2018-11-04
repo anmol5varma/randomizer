@@ -1,7 +1,7 @@
 import React from 'react';
 import './viewList.css';
 
-class Container extends React.Component {
+class List extends React.Component {
   render() {
     return (
       <div className="Container">
@@ -11,4 +11,4 @@ class Container extends React.Component {
   }
 }
 
-export default Container;
+export default List;

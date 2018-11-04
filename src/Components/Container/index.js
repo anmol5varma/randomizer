@@ -47,6 +47,14 @@ class Container extends React.Component {
     });
   }
 
+  clearAll() {
+    this.setState({
+      allItems: [],
+    }, () => {
+      count = 0;
+    });
+  }
+
   selectItem() {
     let list = this.state.allItems;
     const l = list.filter(eachItem => eachItem.status === notSelected).length();
@@ -70,8 +78,10 @@ class Container extends React.Component {
         <AddItems
           add={newItem => this.addNewItem(newItem)}
           edit={(newValue, i) => this.editItem(newValue, i)}
-          delete={i => this.removeItem(i)}
+          remove={i => this.removeItem(i)}
           reset={() => this.reset()}
+          clear={() => this.clearAll()}
+          list={this.state.allItems}
         />
         <List list={this.state.allItems} select={() => this.selectItem()} />
       </div>
