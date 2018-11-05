@@ -4,22 +4,16 @@ import Item from '../EachItem';
 import './addItem.css';
 
 class AddItems extends React.Component {
-  addToValue(index, val) {
-    const newValue = this.state.value;
-    newValue[index] = val;
-    this.setState({
-      value: newValue,
-    });
-  }
-
   render() {
     const {
-      add, edit, remove, list, reset,
+      add, edit, remove, list, reset, clear, select,
     } = this.props;
     return (
       <div className="Items-container">
         <div><button onClick={() => add('')}>+</button>
           <button onClick={() => reset()}>Reset</button>
+          <button onClick={() => clear()}>Clear</button>
+          <button onClick={() => select()}>Select</button>
         </div>
         {list
           .map(eachItem => (<Item
@@ -36,6 +30,8 @@ AddItems.propTypes = {
   remove: Proptypes.func.isRequired,
   edit: Proptypes.func.isRequired,
   reset: Proptypes.func.isRequired,
+  clear: Proptypes.func.isRequired,
+  select: Proptypes.func.isRequired,
   list: Proptypes.arrayOf({
     id: Proptypes.number.isRequired,
     value: Proptypes.string,

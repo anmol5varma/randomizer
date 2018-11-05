@@ -1,4 +1,19 @@
-.Container{
+.List-container{
     display: flex;
-    flex-grow: 1;
+    flex: 1;
+    background: #f2f2f2;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.List-selected{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.List-not-selected{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }

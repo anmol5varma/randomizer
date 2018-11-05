@@ -35,6 +35,10 @@ class Container extends React.Component {
       }
       return eachItem;
     });
+    if (newList[newList.length - 1].value !== '') {
+      newList.push({ id: count, value: '', status: notSelected });
+      count += 1;
+    }
     this.setState({
       allItems: newList,
     });
@@ -57,19 +61,20 @@ class Container extends React.Component {
 
   selectItem() {
     let list = this.state.allItems;
-    const l = list.filter(eachItem => eachItem.status === notSelected).length();
-    const i = Math.floor(Math.random() * l);
-    const selectedItem = list[i];
-    list = list.map((eachItem) => {
-      if (eachItem.id === selectedItem.id) {
-        return { ...eachItem, status: selected };
-      }
-      return eachItem;
-    });
-    this.setState({
-      allItems: list,
-    });
-    return i;
+    const newList = list.filter(eachItem => eachItem.status === notSelected && eachItem.value !== '');
+    if (newList.length > 0) {
+      const i = Math.floor(Math.random() * newList.length);
+      const selectedItem = newList[i];
+      list = list.map((eachItem) => {
+        if (eachItem.id === selectedItem.id) {
+          return { ...eachItem, status: selected };
+        }
+        return eachItem;
+      });
+      this.setState({
+        allItems: list,
+      });
+    }
   }
 
   render() {
@@ -81,6 +86,7 @@ class Container extends React.Component {
           remove={i => this.removeItem(i)}
           reset={() => this.reset()}
           clear={() => this.clearAll()}
+          select={() => this.selectItem()}
           list={this.state.allItems}
         />
         <List list={this.state.allItems} select={() => this.selectItem()} />
