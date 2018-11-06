@@ -50,7 +50,18 @@ class Container extends React.Component {
       allItems: newList,
     });
   }
-
+  toogleStatus(id) {
+    const newList = this.state.allItems.map((item) => {
+      if (item.id === id) {
+        const status = item.status === selected ? notSelected : selected;
+        return { ...item, status };
+      }
+      return item;
+    });
+    this.setState({
+      allItems: newList,
+    });
+  }
   clearAll() {
     this.setState({
       allItems: [],
@@ -89,7 +100,11 @@ class Container extends React.Component {
           select={() => this.selectItem()}
           list={this.state.allItems}
         />
-        <List list={this.state.allItems} select={() => this.selectItem()} />
+        <List
+          list={this.state.allItems}
+          select={() => this.selectItem()}
+          toggle={id => this.toogleStatus(id)}
+        />
       </div>
     );
   }
