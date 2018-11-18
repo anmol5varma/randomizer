@@ -2,6 +2,7 @@
   "name": "react-template",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://anmol5varma.github.io/randomizer",
   "dependencies": {
     "babel-eslint": "^8.2.1",
     "prop-types": "^15.6.0",
