@@ -4,7 +4,12 @@ import './viewList.css';
 
 const populateList = (list, toggle) => list.filter(value => value.value !== '')
   .map((value, i) => (
-    <div onClick={() => toggle(value.id)}>
+    <div
+      onClick={() => toggle(value.id)}
+      role="button"
+      tabIndex={0}
+      onKeyPress={() => toggle(value.id)}
+    >
       {i + 1}. {value.value}
     </div>));
 class List extends React.Component {
